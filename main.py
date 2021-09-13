@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "<h1 style='color:red'>Azimutprint</h1>"
+    return "<h1 style='color:red'>Azimutprint modbus gateway.</h1>"
 
 @app.route("/get_readings")
 def get_readings():
@@ -29,7 +29,7 @@ def reset():
     client = ModbusTcpClient('192.168.1.200')
     client.connect()
 
-    regaddr = 1  # Address to write
+    regaddr = int(request.args.get('devaddr'))  # Address to write
     mba = 127  # nomer ustroystva modbus
     data = 1  # data to write
 
@@ -38,4 +38,4 @@ def reset():
     return "Counter reseted"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')
