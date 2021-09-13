@@ -15,11 +15,8 @@ def get_readings():
     regaddr = 1  # Address to read
     regcount = 1  # kol-vo registrov
     mba = 127  # nomer ustroystva modbus
-    # data = 1 #data to write
 
-    # client.write_register(address=regaddr, value=data, unit=mba)
     result = client.read_input_registers(address=regaddr, count=regcount, unit=mba)
-    # result = client.read_holding_registers(address=regaddr, count=regcount, unit=mba)
     readings = result.registers
 
     client.close()
@@ -40,4 +37,4 @@ def reset():
     return "Counter reseted"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')
