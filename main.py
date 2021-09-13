@@ -13,7 +13,7 @@ def get_readings():
     client = ModbusTcpClient('192.168.1.200')
     client.connect()
 
-    regaddr = str(request.args.get('devaddr'))  # Address to read
+    regaddr = int(request.args.get('devaddr'))  # Address to read
     regcount = 1  # kol-vo registrov
     mba = 127  # nomer ustroystva modbus
 
@@ -38,4 +38,4 @@ def reset():
     return "Counter reseted"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
